@@ -12,7 +12,7 @@
    ========================================================================== */
 :root {
   /* --- Bảng màu --- */
-  --color-primary: #eb25b0;      /* xanh thương hiệu */
+  --color-primary: #eb25b0;      /* hồng thương hiệu */
   --color-primary-dark: #d81d5b;
   --color-accent: #7c3aed;       /* tím nhấn */
   --color-text: #1e293b;         /* chữ chính */
@@ -451,5 +451,23 @@ ul {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+}
+/* đổi hiệu ứng animation ở tên */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-name {
+    animation: hero-name-enter 650ms ease-out both;
+  }
+}
+
+@keyframes hero-name-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

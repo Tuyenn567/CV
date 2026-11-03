@@ -49,7 +49,7 @@
       <div class="container hero-inner">
         <div class="hero-text">
           <p class="eyebrow">Xin chào, tôi là</p>
-          <h1 class="hero-title">Nguyễn Vân Tuyền </h1>
+          <h1 class="hero-title hero-name">Nguyễn Vân Tuyền </h1>
           <p class="hero-role">Web Designer &amp; UI Enthusiast</p>
           <p class="hero-desc">
             Tôi xây dựng giao diện web sạch sẽ, dễ tiếp cận và responsive.
@@ -195,18 +195,138 @@
     </section>
 
     <!-- ----- SECTION: Liên hệ ----- -->
-    <section id="contact" class="section">
-      <div class="container contact-inner">
-        <h2 class="section-title">Liên hệ</h2>
-        <p class="section-sub">Mở cho các cơ hội làm việc &amp; dịch vụ cá nhân.</p>
+    <style>
+  .contact-section {
+    padding: clamp(48px, 8vw, 96px) 20px;
+    background: #fff4f7;
+    color: #29232b;
+  }
 
-        <ul class="contact-list">
-          <li><span class="contact-label">Email</span> <a href="mailto:an.nguyen@example.com">tuyennguyenn567@gmail.com</a></li>
-          <li><span class="contact-label">GitHub</span> <a href="#">github.com/nguyenvantuyen</a></li>
-          <li><span class="contact-label">LinkedIn</span> <a href="#">linkedin.com/in/nguyenvantuyen</a></li>
-        </ul>
+  .contact-section .contact-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .contact-section h2 {
+    margin: 0 0 14px;
+    text-align: center;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .contact-section .contact-intro {
+    margin: 0 0 36px;
+    text-align: center;
+    color: #65545f;
+    line-height: 1.6;
+  }
+
+  .contact-section .contact-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .contact-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .contact-section input,
+  .contact-section button {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 54px;
+    border-radius: 999px;
+    font: inherit;
+  }
+
+  .contact-section input {
+    padding: 12px 20px;
+    border: 1px solid #e7ced8;
+    background: #f6e8ed;
+    color: #29232b;
+  }
+
+  .contact-section button {
+    margin-top: 26px;
+    padding: 12px 20px;
+    border: 0;
+    background: palevioletred;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .contact-section button:hover {
+    background: #88284e;
+  }
+
+  .contact-section input:focus-visible,
+  .contact-section button:focus-visible {
+    outline: 2px solid #a73663;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 560px) {
+    .contact-section .contact-fields {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>
+
+<section id="contact" class="contact-section" aria-labelledby="contact-heading">
+  <div class="contact-inner">
+    <h2 id="contact-heading">Liên hệ</h2>
+    <p class="contact-intro">
+      Bạn có câu hỏi hoặc muốn hợp tác? Hãy gửi email cho mình nhé!
+    </p>
+
+    <form id="portfolio-contact-form">
+      <div class="contact-fields">
+        <div>
+          <label for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email"
+                 placeholder="Nhập địa chỉ email" autocomplete="email" required>
+        </div>
+
+        <div>
+          <label for="contact-name">Họ và tên</label>
+          <input id="contact-name" name="fullName" type="text"
+                 placeholder="Nhập họ và tên" autocomplete="name" required>
+        </div>
       </div>
-    </section>
+
+      <button type="submit">Gửi liên hệ</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  const contactForm = document.querySelector("#portfolio-contact-form");
+
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = formData.get("fullName").trim();
+    const email = formData.get("email").trim();
+
+    const subject = encodeURIComponent(`Liên hệ từ portfolio - ${name}`);
+    const body = encodeURIComponent(
+      `Xin chào Tuyền,\n\n` +
+      `Mình là ${name}. Email của mình là ${email}.\n\n`
+    );
+
+    window.location.href =
+      `mailto:tuyennguyenn567@gmail.com?subject=${subject}&body=${body}`;
+  });
+</script>
 
   </main>
 
